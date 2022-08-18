@@ -1,1 +1,1 @@
-# budbuddy-angular
+# BudBuddy in Angular

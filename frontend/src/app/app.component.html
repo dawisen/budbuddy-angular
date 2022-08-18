@@ -1,0 +1,42 @@
+<div id="app">
+  <div class="container" *ngIf="auth.isLoading$ | async; else loaded">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+
+  <ng-template #loaded>
+    <div class="container">
+      <mat-toolbar color="accent" class="mat-elevation-z4">
+        <span>
+          <mat-icon> eco </mat-icon>
+          <span class="title">{{ title }}</span>
+        </span>
+        <nav>
+          <a
+            mat-button
+            class="nav-link"
+            *ngFor="let link of links"
+            [routerLink]="link.path"
+            routerLinkActive="active"
+          >
+            <mat-icon>
+              {{ link.icon }}
+            </mat-icon>
+            {{ link.title }}
+          </a>
+        </nav>
+        <div class="login-btn">
+          <app-login-button
+            *ngIf="(auth.isAuthenticated$ | async) === false"
+          ></app-login-button>
+          <app-logout-button
+            *ngIf="auth.isAuthenticated$ | async"
+          ></app-logout-button>
+          <app-signup-button
+            *ngIf="(auth.isAuthenticated$ | async) === false"
+          ></app-signup-button>
+        </div>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </div>
+  </ng-template>
+</div>

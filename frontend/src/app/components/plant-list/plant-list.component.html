@@ -1,0 +1,10 @@
+<div class="row">
+  <mat-grid-list cols="2" rowHeight="200px">
+    <mat-grid-tile *ngFor="let plant of plants$ | async">
+      <button mat-stroked-button>
+        <img class="thumbnail" src="{{ plant.picture }}" />
+        {{ plant.name }}
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
